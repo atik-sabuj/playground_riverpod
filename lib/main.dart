@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'home_page.dart';
 
-String name = '';
+//Providers
+//Provider
+//StateProvider
+
+final nameProvider = StateProvider<String?>((ref) => null);
+
 void main() {
-  name = 'Sabuj';
   runApp(
     const ProviderScope(
     child: MyApp(),
