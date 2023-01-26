@@ -6,11 +6,14 @@ import 'home_page.dart';
 //Providers
 //Provider
 //StateProvider
-//StateNotifier and StateNotifierProvider
+//StateNotifier and StateNotifierProvider(43.41 min)
+//ChangeNotifier & ChangeNotifierProvider
 
 final userProvider = StateNotifierProvider<UserNotifier,User>(
         (ref) => UserNotifier(),
 );
+
+final userChangeNotifierProvider = ChangeNotifierProvider((ref) => UserNotifierChange());
 
 void main() {
   runApp(

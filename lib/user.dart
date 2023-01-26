@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,8 +11,6 @@ class User {
     required this.name,
     required this.age,
   });
-
-//}
 
   User copyWith({
     String? name,
@@ -71,5 +68,19 @@ class UserNotifier extends StateNotifier<User> {
 
   void updateAge(int a) {
     state = state.copyWith(age: a);
+  }
+}
+
+class UserNotifierChange extends ChangeNotifier{
+  User user = const User(name: '', age: 0);
+
+  void updateName(String n) {
+    user = user.copyWith(name: n);
+    notifyListeners();
+  }
+
+  void updateAge(int a) {
+    user = user.copyWith(age: a);
+    notifyListeners();
   }
 }

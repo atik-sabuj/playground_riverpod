@@ -7,15 +7,16 @@ class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   void onSubmit(WidgetRef ref, String value) {
-     ref.read(userProvider.notifier).updateName(value);
+     ref.read(userChangeNotifierProvider.notifier).updateName(value);
   }
 
   void onSubmitAge(WidgetRef ref, String value) {
-    ref.read(userProvider.notifier).updateAge(int.parse(value));
+    ref.read(userChangeNotifierProvider.notifier).updateAge(int.parse(value));
   }
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userChangeNotifierProvider).user;
+
     return Scaffold(
         appBar: AppBar(
           title: Text(user.name),
