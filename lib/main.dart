@@ -5,6 +5,7 @@ import 'home_page.dart';
 //Providers
 //Provider
 //StateProvider
+//StateNotifier and StateNotifierProvider
 
 final nameProvider = StateProvider<String?>((ref) => null);
 
