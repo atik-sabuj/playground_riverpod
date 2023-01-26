@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:playground_riverpod/user.dart';
 import 'home_page.dart';
 
 //Providers
@@ -7,7 +8,9 @@ import 'home_page.dart';
 //StateProvider
 //StateNotifier and StateNotifierProvider
 
-final nameProvider = StateProvider<String?>((ref) => null);
+final userProvider = StateNotifierProvider<UserNotifier,User>(
+        (ref) => UserNotifier(),
+);
 
 void main() {
   runApp(
