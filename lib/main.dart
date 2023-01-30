@@ -10,9 +10,10 @@ import 'package:http/http.dart' as http;
 //StateNotifier and StateNotifierProvider(43.41 min)
 //ChangeNotifier & ChangeNotifierProvider(53.40 min)
 //FutureProvider(59.23 min)
+//AsyncValue(01:07:28 sec)
 
 final fetchUserProvider = FutureProvider((ref) => {
- const url = 'https://jsonplaceholder.typicode.com/user/1';
+ const url = 'https://jsonplaceholder.typicode.com/users/1';
  return http.get(Uri.parse(url)).then((value) => User.fromJson(value.body));
 });
 
