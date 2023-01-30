@@ -1,38 +1,38 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 @immutable
 class User {
   final String name;
-  final int age;
+  final String email;
 
   const User({
     required this.name,
-    required this.age,
+    required this.email,
   });
 
   User copyWith({
     String? name,
-    int? age,
+    String? email,
   }) {
     return User(
       name: name ?? this.name,
-      age: age ?? this.age,
+      email: email ?? this.email,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name' : name,
-      'age' : age,
+      'email' : email,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       name: map['name'] ?? '',
-      age: map['age']?.toInt() ?? 0,
+      email: map['email']?? '',
     );
   }
 
@@ -41,46 +41,16 @@ class User {
   factory User.fromJson(String source) => User.fromMap(json.decode(source));
 
   @override
-  String toString() => 'User(name: $name, age: $age)';
+  String toString() => 'User(name: $name, email: $email)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is User &&
-        other.name == name &&
-        other.age == age;
+    return other is User && other.name == name && other.email == email;
   }
 
   @override
-  int get hasCode => name.hashCode ^ age.hashCode;
+  int get hasCode => name.hashCode ^ email.hashCode;
 }
 
-class UserNotifier extends StateNotifier<User> {
-  UserNotifier()
-      :super(
-         const User(name: '', age: 0),
-      );
-
-  void updateName(String n) {
-    state = state.copyWith(name: n);
-  }
-
-  void updateAge(int a) {
-    state = state.copyWith(age: a);
-  }
-}
-
-class UserNotifierChange extends ChangeNotifier{
-  User user = const User(name: '', age: 0);
-
-  void updateName(String n) {
-    user = user.copyWith(name: n);
-    notifyListeners();
-  }
-
-  void updateAge(int a) {
-    user = user.copyWith(age: a);
-    notifyListeners();
-  }
-}

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:playground_riverpod/user.dart';
+import '/user.dart';
 import 'home_page.dart';
+import 'package:http/http.dart' as http;
 
 //Providers
 //Provider
 //StateProvider
 //StateNotifier and StateNotifierProvider(43.41 min)
-//ChangeNotifier & ChangeNotifierProvider
+//ChangeNotifier & ChangeNotifierProvider(53.40 min)
+//FutureProvider(59.23 min)
 
-final userProvider = StateNotifierProvider<UserNotifier,User>(
-        (ref) => UserNotifier(),
-);
-
-final userChangeNotifierProvider = ChangeNotifierProvider((ref) => UserNotifierChange());
+final fetchUserProvider = FutureProvider((ref) => {
+ const url = 'https://jsonplaceholder.typicode.com/user/1';
+ return http.get(Uri.parse(url)).then((value) => User.fromJson(value.body));
+});
 
 void main() {
   runApp(
